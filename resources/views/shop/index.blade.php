@@ -8,7 +8,7 @@
 
 <br></br>
 
-<div class="row">
+<div class="row"> <!--  Esta es la tabla de los productos en si-->
  <div class="col-sm-6 col-md-4 columna">
    <div class="thumbnail">
     <center><img src="https://images-na.ssl-images-amazon.com/images/I/8134AkhQJgL.jpg" alt="El Señor de los Anillos" class="img-responsive"></center>
@@ -23,7 +23,7 @@
     </div>
    </div>
 
-   <div class="col-sm-6 col-md-4">
+   <div class="col-sm-6 col-md-4 columna">
    <div class="thumbnail">
     <center><img src="https://images-na.ssl-images-amazon.com/images/I/8134AkhQJgL.jpg" alt="El Señor de los Anillos" class="img-responsive"></center>
      <h3>LABEL</h3>
@@ -38,7 +38,7 @@
    </div>
 
 
-   <div class="col-sm-6 col-md-4">
+   <div class="col-sm-6 col-md-4 columna">
    <div class="thumbnail">
     <center><img src="https://images-na.ssl-images-amazon.com/images/I/8134AkhQJgL.jpg" alt="El Señor de los Anillos" class="img-responsive"></center>
      <h3>LABEL</h3>
