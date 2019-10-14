@@ -10,7 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('shop.index'); /* Obtiene el index que esta en la carpeta view */
-});
+//Invoca al controlador ProductController para que muestre el index
+Route::get('/', [
+    'uses' => 'ProductController@getIndex',
+    'as' => 'product.index'
+]);

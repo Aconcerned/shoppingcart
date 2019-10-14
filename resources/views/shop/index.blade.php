@@ -5,52 +5,28 @@
 @endsection
 
 @section('content')
-
 <br></br>
 
-<div class="row"> <!--  Esta es la tabla de los productos en si-->
- <div class="col-sm-6 col-md-4 columna">
-   <div class="thumbnail">
-    <center><img src="https://images-na.ssl-images-amazon.com/images/I/8134AkhQJgL.jpg" alt="El Señor de los Anillos" class="img-responsive"></center>
-     <h3>LABEL</h3>
+  @foreach($products->chunk(3) as $productChunk)
+  <div class="row d-flex"> <!--  Esta es la tabla de los productos en si-->
+    @foreach($productChunk as $product)
+    <div class="col-sm-3 col-md-4 columna">
+    <div class="thumbnail">
+    <center><img src="{{ $product->imagePath }}" alt="El Señor de los Anillos" class="img-responsive"></center>
+    <h3>{{ $product->title }}</h3> 
+    <h3>Descripcion</h3>
 
      <div class="caption">
-       <p>Etizzle shiznit fo shizzle sizzle augue hendrerizzle accumsizzle. Gizzle izzle est. Vivamizzle hizzle dolor, sure vitae, yippiyo id, ultrices izzle, sheezy.</p>
-       <div class="text-left price">$12</div>
+       <p class="description">{{ $product->description }}</p>
+       <div class="text-left price">${{ $product->price }}</div>
        <div class="text-right"><a href="#" class="btn btn-primary pull-right" role="button">Añadir</a></div>
      </div>
 
+      </div>
+      </div>
+     </div> 
+    @endforeach
     </div>
-   </div>
+  @endforeach
 
-   <div class="col-sm-6 col-md-4 columna">
-   <div class="thumbnail">
-    <center><img src="https://images-na.ssl-images-amazon.com/images/I/8134AkhQJgL.jpg" alt="El Señor de los Anillos" class="img-responsive"></center>
-     <h3>LABEL</h3>
-
-     <div class="caption">
-       <p>Etizzle shiznit fo shizzle sizzle augue hendrerizzle accumsizzle. Gizzle izzle est. Vivamizzle hizzle dolor, sure vitae, yippiyo id, ultrices izzle, sheezy.</p>
-       <div class="text-left price">$12</div>
-       <div class="text-right"><a href="#" class="btn btn-primary pull-right" role="button">Añadir</a></div>
-     </div>
-
-    </div>
-   </div>
-
-
-   <div class="col-sm-6 col-md-4 columna">
-   <div class="thumbnail">
-    <center><img src="https://images-na.ssl-images-amazon.com/images/I/8134AkhQJgL.jpg" alt="El Señor de los Anillos" class="img-responsive"></center>
-     <h3>LABEL</h3>
-
-     <div class="caption">
-       <p>Etizzle shiznit fo shizzle sizzle augue hendrerizzle accumsizzle. Gizzle izzle est. Vivamizzle hizzle dolor, sure vitae, yippiyo id, ultrices izzle, sheezy.</p>
-       <div class="text-left price">$12</div>
-       <div class="text-right"><a href="#" class="btn btn-primary pull-right" role="button">Añadir</a></div>
-     </div>
-
-    </div>
-   </div>
-
-   </div>
 @endsection
