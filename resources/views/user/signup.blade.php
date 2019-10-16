@@ -3,9 +3,10 @@
 @section('content')
 <div class="row">
    
-   <div class="col-md-4 col-md-offset-4">
-
-    <h1>Registrarse</h1>
+   <div class="boi">
+    <br></br>
+    <center><h1>Registrarse</h1></center>
+    <br></br>
     @if(count($errors) > 0)
      <div class="alert alert-danger">
      @foreach($errors->all() as $error)
@@ -14,18 +15,20 @@
     </div>
     @endif
 
-    <form action="{{ route('user.signup') }}" method="post">
+    <form class="forma" action="{{ route('user.signup') }}" method="post">
        <div class="form group">
-          <label for="email">E-Mail</label>
+          <label for="email" class="email">E-Mail</label>
           <input type="email" id="email" name="email" class="form-control"></input>
        </div>
 
+       <br></br>
+
        <div class="form group">
-          <label for="password">Clave</label>
+          <label for="password" class="email">Clave</label>
           <input type="password" id="password" name="password" class="form-control"></input>
        </div>
        <br></br>
-       <button type="submit" id="submit" name="submit" class="btn btn-primary">Registrarse</button>
+       <center><button type="submit" id="submit" name="submit" class="btn btn-primary">Registrarse</button><center>
        {{ csrf_field() }}
        
      </form>
