@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light"> <!--  Inicio de la barra -->
-  <a class="navbar-brand" href="#">Menu</a>
+  <a class="navbar-brand" href="{{ route('product.index') }}"><img src="{{URL::asset('/images/LogoMakr_90Ly8X.png')}}" alt="menu" height="50" width="50"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active"> <!-- Aqui se encuentra el carrito -->
-        <a class="nav-link" href="#"><i class="fi-xtluhl-shopping-cart-thin"></i> Carrito<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#"><i class="fi-xwsuhl-shopping-cart-solid"></i> Carrito<span class="sr-only">(current)</span></a>
       </li>
      
     </ul>
@@ -19,7 +19,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('user.signup') }}"><i class="fi-stluxl-user-plus-thin"></i> Registrarse</a> <!-- Ir al perfil -->
-          <a class="dropdown-item" href="#"><i class="fi-stluxl-user-plus-thin"></i> Iniciar sesion</a> <!-- Ir al perfil -->
+          <a class="dropdown-item" href="#"><i class="fi-cwsuxl-check"></i> Iniciar sesion</a> <!-- Ir al perfil -->
           <a class="dropdown-item" href="#"><i class="fi-xnsuxl-trash-bin"></i> Cerrar</a> <!-- Cerrar la sesion -->
         </div>
       </li>

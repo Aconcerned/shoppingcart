@@ -6,12 +6,21 @@
   color: #7F7F7F;
 }
 
+.thumbnail .description{
+  color: #7F7F7F;
+  max-height: 20%;
+}
+
+.text-left-price{
+  max-height: 20%;
+}
+
 .columna{
     box-shadow: 0 0 5px black;
 
 }
 
-.price{
+.text-left-price{
     font-weight: bold;
     font-size: 16px;
 }
@@ -33,4 +42,8 @@
         0 0  0 2px rgb(255,255,255),
         0.3em 0.3em 1em rgba(0,0,0,0.3);
   
+}
+
+.caption .anadir{
+  margin-top: 5%;
 }

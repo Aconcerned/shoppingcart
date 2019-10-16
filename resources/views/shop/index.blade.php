@@ -17,8 +17,8 @@
 
      <div class="caption">
      <p class="description">{{ $product->description }}</p>
-     <div class="text-left price">${{ $product->price }}</div>
-     <div class="text-right"><a href="#" class="btn btn-primary pull-right" role="button">Añadir</a></div>
+     <div class="text-left-price">${{ $product->price }}</div>
+     <div class="anadir"><a href="#" class="btn btn-primary pull-center" role="button">Añadir</a></div>
      </div>
 
     </div>
