@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Auth;
+use Redirect;
 
 class UserController extends Controller
 {
@@ -27,4 +29,30 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('product.index');
     }
-}
+    
+    public function getSignin(){
+        return view('user.signin');
+    }
+
+    public function postSignin(Request $request){
+        $this->validate($request, [
+            'email' => 'email|required',
+            'password' => 'required|min:4'
+        ]); //Valida los campos
+
+        if(Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'type' => 'cliente'])){
+          return redirect()->route('user.profile');
+        } //Valida si el usuario es un cliente
+
+        if(Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'type' => 'admin'])){
+            return redirect()->route('admin.dashboard');
+          } //Valida si el usuario es un admin
+
+        return redirect()->back();
+        }
+
+    public function getProfile(){
+        return view('user.profile');
+    }
+    }
+
