@@ -16,32 +16,48 @@ Route::get('/', [
     'as' => 'product.index'
 ]);
 
-Route::get('/signup', [
-    'uses' => 'UserController@getSignup',
-    'as' => 'user.signup'
-]);
 
-Route::post('/signup', [
-    'uses' => 'UserController@postSignup', 
-    'as' => 'user.signup'
-]);
+//Invoca al controlador de Usuarios y hace diversas funciones
+Route::group(['prefix' => 'user'], function() {
+    
+    Route::group(['middleware' => 'guest'], function() {
+      Route::get('/signup', [
+        'uses' => 'UserController@getSignup',
+        'as' => 'user.signup'  //Es el modulo de registro, solo usuarios no registrados lo pueden usar
+    ]);
+    
+    Route::post('/signup', [
+        'uses' => 'UserController@postSignup', 
+        'as' => 'user.signup' //Es el modulo de registro, solo usuarios no registrados lo pueden usar
+    ]);
+    
+    Route::get('/signin', [
+        'uses' => 'UserController@getSignin',
+        'as' => 'user.signin' //Es el modulo de inicio de sesion, solo usuarios no registrados lo pueden usar
+    ]);
+    
+    Route::post('/signin', [
+        'uses' => 'UserController@postSignin', 
+        'as' => 'user.signin' //Es el modulo de inicio de sesion, solo usuarios no registrados lo pueden usar
+    ]);
+});
 
-Route::get('/signin', [
-    'uses' => 'UserController@getSignin',
-    'as' => 'user.signin'
-]);
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/profile', [
+        'uses' => 'UserController@getProfile',
+        'as' => 'user.profile' //Es el modulo de perfil, solo usuarios registrados lo pueden usar
+    ]);
+    
+    Route::get('/logout', [
+        'uses' => 'UserController@getLogout',
+        'as' => 'user.logout'  //Es el modulo de salir, solo usuarios registrados lo pueden usar
+    ]);
+});
+});
 
-Route::post('/signin', [
-    'uses' => 'UserController@postSignin', 
-    'as' => 'user.signin'
-]);
-
-Route::get('/user/profile', [
-    'uses' => 'UserController@getProfile',
-    'as' => 'user.profile'
-]);
 
 Route::get('/admin', [
     'uses' => 'AdminController@getAdmin', 
-    'as' => 'admin.dashboard'
+    'as' => 'admin.dashboard',
+    'middleware' => 'auth' //Es el modulo de entrar al admin, solo usuarios registrados lo pueden usar
 ]);

@@ -14,7 +14,7 @@ class UserController extends Controller
         return view('user.signup'); //Manda al usuario al signup
     }
 
-    public function postSignup(Request $request){
+    public function postSignup(Request $request){ //Crear el usuario
         $this->validate($request, [
             'email' => 'email|required|unique:users',
             'password' => 'required|min:4'
@@ -26,15 +26,16 @@ class UserController extends Controller
             
         ]);
 
-        $user->save();
-        return redirect()->route('product.index');
+        $user->save(); //Salva al usuario
+        Auth::login($user); //Arranca la sesion
+        return redirect()->route('user.profile');
     }
     
     public function getSignin(){
         return view('user.signin');
     }
 
-    public function postSignin(Request $request){
+    public function postSignin(Request $request){ //Inicio de sesion
         $this->validate($request, [
             'email' => 'email|required',
             'password' => 'required|min:4'
@@ -53,6 +54,11 @@ class UserController extends Controller
 
     public function getProfile(){
         return view('user.profile');
+    }
+
+    public function getLogout(){
+      Auth::logout();
+      return redirect()->route('product.index');
     }
     }
 
