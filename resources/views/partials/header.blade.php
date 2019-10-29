@@ -18,8 +18,8 @@
         <i class="fi-cnsuxl-user-circle"></i> Cuenta de usuario <!--  Este es el usuario -->
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        @if(Auth::check())
-        <a class="dropdown-item" href="{{ route('user.profile') }}"><i class="fi-xtluxl-user-thin"></i> Perfil</a> <!-- Cerrar la sesion -->
+        @if(Auth::check()) <!--  Detecta si hay un usuario o no -->
+        <a class="dropdown-item" href="{{ route('user.profile') }}"><i class="fi-xtluxl-user-thin"></i> Perfil</a> <!-- Perfil -->
         <a class="dropdown-item" href="{{ route('user.logout') }}"><i class="fi-xnsuxl-trash-bin"></i> Cerrar</a> <!-- Cerrar la sesion -->
          @else
          <a class="dropdown-item" href="{{ route('user.signup') }}"><i class="fi-stluxl-user-plus-thin"></i> Registrarse</a> <!-- Ir al perfil -->

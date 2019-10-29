@@ -28,7 +28,7 @@ Route::group(['prefix' => 'user'], function() {
     
     Route::post('/signup', [
         'uses' => 'UserController@postSignup', 
-        'as' => 'user.signup' //Es el modulo de registro, solo usuarios no registrados lo pueden usar
+        'as' => 'user.signup' //Es el modulo de registro, cuando el usuario se registra, solo usuarios no registrados lo pueden usar
     ]);
     
     Route::get('/signin', [
@@ -38,14 +38,14 @@ Route::group(['prefix' => 'user'], function() {
     
     Route::post('/signin', [
         'uses' => 'UserController@postSignin', 
-        'as' => 'user.signin' //Es el modulo de inicio de sesion, solo usuarios no registrados lo pueden usar
+        'as' => 'user.signin' //Es el modulo de inicio de sesion, cuando el usuario inicia sesion, solo usuarios no registrados lo pueden usar
     ]);
 });
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/profile', [
         'uses' => 'UserController@getProfile',
-        'as' => 'user.profile' //Es el modulo de perfil, solo usuarios registrados lo pueden usar
+        'as' => 'user.profile' //Es el modulo de perfil, solo usuarios registrados lo pueden ver
     ]);
     
     Route::get('/logout', [

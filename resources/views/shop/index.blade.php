@@ -14,11 +14,10 @@
     <div class="thumbnail">
     <center><img src="{{ $product->imagePath }}" alt="El Señor de los Anillos" class="img-responsive"></center>
     <h3>{{ $product->title }}</h3> 
-
      <div class="caption">
      <p class="description">{{ $product->description }}</p>
      <div class="text-left price">${{ $product->price }}</div>
-     <div class="text-right"><a href="#" class="btn btn-primary pull-right" role="button">Añadir</a></div>
+     <div class="buttontainer"><a href="#" class="btn btn-primary btn-lg btn-block" role="button">Añadir</a></div>
      </div>
 
     </div>

@@ -8,13 +8,13 @@
     <h1>Registrarse</h1>
     @if(count($errors) > 0)
      <div class="alert alert-danger">
-     @foreach($errors->all() as $error)
+     @foreach($errors->all() as $error) <!--  Detecta los errores-->
      <p>{{ $error }}</p>
      @endforeach
     </div>
     @endif
 
-    <form action="{{ route('user.signup') }}" method="post">
+    <form action="{{ route('user.signup') }}" method="post"> <!--  Manda los datos a la ruta para que el controlador los use -->
        <div class="form group">
           <label for="email">E-Mail</label>
           <input type="email" id="email" name="email" class="form-control"></input>
