@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use Auth;
+
+use Redirect;
 
 class AdminController extends Controller
 {

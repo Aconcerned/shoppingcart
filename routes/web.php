@@ -66,9 +66,8 @@ Route::group(['middleware' => 'auth'], function() {
 });
 });
 
-
 Route::get('/admin', [
     'uses' => 'AdminController@getAdmin', 
     'as' => 'admin.dashboard',
-    'middleware' => 'auth' //Es el modulo de entrar al admin, solo usuarios registrados lo pueden usar
+    'middleware' => 'auth', 'admin' //Es el modulo de entrar al admin, solo usuarios registrados lo pueden usar
 ]);
