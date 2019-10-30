@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2019 a las 22:52:51
+-- Tiempo de generación: 29-10-2019 a las 21:46:16
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 7.2.10
 
@@ -54,8 +54,8 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2019_08_19_000000_create_failed_jobs_table', 1),
-(2, '2019_10_14_135822_create_products_table', 1);
+(5, '2019_08_19_000000_create_failed_jobs_table', 1),
+(6, '2019_10_14_135822_create_products_table', 1);
 
 -- --------------------------------------------------------
 
@@ -79,9 +79,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `created_at`, `updated_at`, `imagePath`, `title`, `description`, `price`, `type`) VALUES
-(1, '2019-10-14 18:30:41', '2019-10-14 18:30:41', 'https://images-na.ssl-images-amazon.com/images/I/8134AkhQJgL.jpg', 'El Lord de los Anillos', 'El libro de fantasia mas reconocido de todos los tiempos, quien inspiro a otras obras como Warcraft, Warhammer y Calabozos y Dragones', 20.00, 'libro'),
-(2, '2019-10-14 18:30:41', '2019-10-14 18:30:41', 'https://cdn.shopify.com/s/files/1/1620/8083/products/ad3381fb730257a66cb9a601650a4efb7e35a8ad_1024x1024.jpg?v=1542260205', 'Amazing Fantasy numero 15', 'El comic que dio origen a uno de los superheroes mas reconocidos, Spider-Man', 15.00, 'comic'),
-(3, '2019-10-14 18:30:41', '2019-10-14 18:30:41', 'https://cdn.waterstones.com/bookjackets/large/9780/2413/9780241387160.jpg', 'La Guerra de los Mundos', 'El libro de ciencia ficcion mas conocido y el primer libro sobre invasiones extraterrestres', 10.00, 'libro');
+(1, '2019-10-30 00:39:14', '2019-10-30 00:39:14', 'https://images-na.ssl-images-amazon.com/images/I/8134AkhQJgL.jpg', 'El Lord de los Anillos', 'El libro de fantasia mas reconocido de todos los tiempos, quien inspiro a otras obras como Warcraft, Warhammer y Calabozos y Dragones', 20.00, 'libro'),
+(2, '2019-10-30 00:39:14', '2019-10-30 00:39:14', 'https://cdn.shopify.com/s/files/1/1620/8083/products/ad3381fb730257a66cb9a601650a4efb7e35a8ad_1024x1024.jpg?v=1542260205', 'Amazing Fantasy numero 15', 'El comic que dio origen a uno de los superheroes mas reconocidos, Spider-Man', 15.00, 'comic'),
+(3, '2019-10-30 00:39:14', '2019-10-30 00:39:14', 'https://cdn.waterstones.com/bookjackets/large/9780/2413/9780241387160.jpg', 'La Guerra de los Mundos', 'El libro de ciencia ficcion mas conocido y el primer libro sobre invasiones extraterrestres', 10.00, 'libro');
 
 -- --------------------------------------------------------
 
@@ -95,16 +95,17 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'cliente'
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'cliente',
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `created_at`, `updated_at`, `email`, `password`, `type`) VALUES
-(1, '2019-10-16 00:50:37', '2019-10-16 00:50:37', 'jesusenrique1996@gmail.com', '$2y$10$0Ob/xEA.2tr7DY8B3Pv/8OfuREBwJeQsVfcCpV5nwHmwUF3GZXkPS', 'cliente'),
-(2, '2019-10-16 00:51:19', '2019-10-16 00:51:19', 'dogdie3001@gmail.com', '$2y$10$DKIJRazHOyp8pNYjn/bpbe/LRFI4QeqhgMa46kD1pZG4Eu61eu9Gu', 'cliente');
+INSERT INTO `users` (`id`, `created_at`, `updated_at`, `email`, `password`, `type`, `remember_token`) VALUES
+(2, '2019-10-30 00:41:27', '2019-10-30 00:41:27', 'dogdie3001@gmail.com', '$2y$10$Il2SWGlqszl.kEQJOmehxeF74jFAP.Kw38ppZ32ebfjJq4B3gzwJa', 'cliente', NULL),
+(3, '2019-10-30 00:43:43', '2019-10-30 00:43:43', 'jesusenrique1996@gmail.com', '$2y$10$U5/jXzyEJFTlNkxp3JOjiuRcisC18dT/NBUhWHuqC36djOYG7O1aS', 'admin', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -148,7 +149,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
@@ -160,7 +161,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

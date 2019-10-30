@@ -17,7 +17,7 @@
      <div class="caption">
      <p class="description">{{ $product->description }}</p>
      <div class="text-left price">${{ $product->price }}</div>
-     <div class="buttontainer"><a href="#" class="btn btn-primary btn-lg btn-block" role="button">Añadir</a></div>
+     <div class="buttontainer"><a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-primary btn-lg btn-block" role="button">Añadir</a></div>
      </div>
 
     </div>

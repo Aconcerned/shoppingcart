@@ -16,6 +16,17 @@ Route::get('/', [
     'as' => 'product.index'
 ]);
 
+//Invoca al controlador ProductController para que meta cosas en el carrito
+Route::get('/shopping-cart/{id}', [
+    'uses' => 'ProductController@getAddToCart',
+    'as'=> 'product.addToCart'
+]);
+
+//Invoca al controlador ProductController para que meta cosas en el carrito
+Route::get('/shopping-cart/', [
+    'uses' => 'ProductController@getCart',
+    'as'=> 'product.shoppingCart'
+]);
 
 //Invoca al controlador de Usuarios y hace diversas funciones
 Route::group(['prefix' => 'user'], function() {
