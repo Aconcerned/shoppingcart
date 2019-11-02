@@ -19,13 +19,20 @@ Route::get('/', [
 //Invoca al controlador ProductController para que meta cosas en el carrito
 Route::get('/shopping-cart/{id}', [
     'uses' => 'ProductController@getAddToCart',
-    'as'=> 'product.addToCart'
+    'as'=> 'product.addToCart',
+    'middleware' => 'auth'
 ]);
 
 //Invoca al controlador ProductController para que meta cosas en el carrito
 Route::get('/shopping-cart/', [
     'uses' => 'ProductController@getCart',
-    'as'=> 'product.shoppingCart'
+    'as'=> 'product.shoppingCart',
+    'middleware' => 'auth'
+]);
+
+Route::get('/checkout', [
+    'uses' => 'ProductController@getCheckout',
+    'as'=> 'checkout'
 ]);
 
 //Invoca al controlador de Usuarios y hace diversas funciones
