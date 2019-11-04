@@ -32,7 +32,8 @@ Route::get('/shopping-cart/', [
 
 Route::get('/checkout', [
     'uses' => 'ProductController@getCheckout',
-    'as'=> 'checkout'
+    'as'=> 'checkout',
+    'middleware' => 'auth'
 ]);
 
 //Invoca al controlador de Usuarios y hace diversas funciones
@@ -73,8 +74,6 @@ Route::group(['middleware' => 'auth'], function() {
 });
 });
 
-Route::get('/admin', [
-    'uses' => 'AdminController@getAdmin', 
-    'as' => 'admin.dashboard',
-    'middleware' => 'auth', 'admin' //Es el modulo de entrar al admin, solo usuarios registrados lo pueden usar
-]);
+Route::get('/admin', 'AdminController@admin')    
+    ->middleware('is_admin')    
+    ->name('admin.dashboard');

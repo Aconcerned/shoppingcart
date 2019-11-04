@@ -14,8 +14,13 @@ use Redirect;
 
 class AdminController extends Controller
 {
-    public function getAdmin(){
-        return view('admin.dashboard'); //Manda al usuario al signup
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function admin(){
+        return view('admin.dashboard');
     }
 
 }

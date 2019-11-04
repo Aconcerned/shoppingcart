@@ -1,10 +1,7 @@
 <?php
-
 namespace App\Http\Middleware;
-
 use Closure;
-
-class AdminCheck
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -15,6 +12,9 @@ class AdminCheck
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if(auth()->user()->isAdmin()) {
+            return $next($request);
+        }
+        
     }
 }

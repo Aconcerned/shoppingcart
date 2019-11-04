@@ -17,7 +17,8 @@ class UserController extends Controller
     public function postSignup(Request $request){ //Crear el usuario
         $this->validate($request, [
             'email' => 'email|required|unique:users',
-            'password' => 'required|min:4'
+            'password' => 'required|min:4',
+            'type' => User::DEFAULT_TYPE,
         ]); //Valida al usuario deacuerdo si es unico y su clave es mayor a 4
 
         $user=new User([

@@ -8,6 +8,13 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    const ADMIN_TYPE = 'admin';
+    const DEFAULT_TYPE = 'cliente';
+
+public function isAdmin(){        
+    return $this->type === self::ADMIN_TYPE;    
+}
+
     use Notifiable;
 
     /**

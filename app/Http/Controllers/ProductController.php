@@ -29,7 +29,7 @@ class ProductController extends Controller
     }
 
     public function getCart(){
-        if(!Session::has('cart')){
+        if(!Session::has('cart')){ //Agarra y muestra el carro 
             return view('shop.shopping-cart');
         }
         $oldCart = Session::get('cart');
