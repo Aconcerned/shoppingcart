@@ -36,6 +36,12 @@ Route::get('/checkout', [
     'middleware' => 'auth'
 ]);
 
+Route::post('/checkout', [
+    'uses' => 'ProductController@postCheckout',
+    'as'=> 'checkout',
+    'middleware' => 'auth'
+]);
+
 //Invoca al controlador de Usuarios y hace diversas funciones
 Route::group(['prefix' => 'user'], function() {
     

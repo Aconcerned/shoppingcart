@@ -37,7 +37,7 @@ class ProductController extends Controller
         return view('shop.shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
-    public function getCheckout(){
+    public function getCheckout(){ //Muestra el checkout
         if(!Session::has('cart')){
             return view('shop.shopping-cart');
         }
