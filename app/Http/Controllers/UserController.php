@@ -54,9 +54,8 @@ class UserController extends Controller
         }
 
     public function getProfile(){
-        //$users = DB::table('users')->where('id','=',$id)->get();
-        //return view('user.profile', compact('users', $users));
-        return view('user.profile');
+        $users = DB::table('users')->where('id','=',$id)->get();
+        return view('user.profile', compact('users', $users));
     }
 
     public function getLogout(){
