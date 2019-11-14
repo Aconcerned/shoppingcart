@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
 use Redirect;
+use Illuminate\Support\Facades\DB;
+use Session;
 
 class UserController extends Controller
 {
@@ -29,7 +31,7 @@ class UserController extends Controller
 
         $user->save(); //Salva al usuario
         Auth::login($user); //Arranca la sesion
-        return redirect()->route('user.profile');
+        return redirect()->route('product.index');
     }
     
     public function getSignin(){
@@ -43,7 +45,7 @@ class UserController extends Controller
         ]); //Valida los campos
 
         if(Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'type' => 'cliente'])){
-          return redirect()->route('user.profile');
+          return redirect()->route('product.index');
         } //Valida si el usuario es un cliente
 
         if(Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'type' => 'admin'])){
@@ -53,13 +55,14 @@ class UserController extends Controller
         return redirect()->back();
         }
 
-    public function getProfile(){
-        $users = DB::table('users')->where('id','=',$id)->get();
-        return view('user.profile', compact('users', $users));
-    }
+        public function getProfile($id){
+            $users = User::whereId($id)->first(); 
+            return view('user.profile', compact('users', $users));
+        }
 
     public function getLogout(){
       Auth::logout();
+      Session::forget('cart');
       return redirect()->route('product.index');
     }
     }

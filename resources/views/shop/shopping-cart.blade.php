@@ -30,8 +30,8 @@
     Action
   </button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Quitar uno</a>
-    <a class="dropdown-item" href="#">Quitar todos</a>
+    <a class="dropdown-item" href="{{ route('product.reduceByOne', ['id' => $product['item']['id']]) }}">Quitar uno</a>
+    <a class="dropdown-item" href="{{ route('product.remove', ['id' => $product['item']['id']]) }}">Quitar todos</a>
 </div>
            </li>
          @endforeach

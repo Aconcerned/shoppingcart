@@ -23,10 +23,27 @@ class Cart
                 $storedItem = $this->items[$id]; //Evita que los items se clonen
             }
         }
-        $storedItem['qty']++;
+        $storedItem['qty']++; //Suma por uno cada vez
         $storedItem['price'] = $item->price * $storedItem['qty']; //Suma todo
         $this->items[$id] = $storedItem; //Agarra a id del item y lo guarda
         $this->totalQty++; //Aumenta el numero de productos por 1
         $this->totalPrice += $item->price; 
+    }
+
+    public function reduceByOne($id){ //Borra un item
+       $this->items[$id]['qty']--; //Empieza a quitar
+       $this->items[$id]['price'] -= $this->items[$id]['item']['price'];
+       $this->totalQty--; //Quita la cantidad por 1
+       $this->totalPrice -= $this->items[$id]['item']['price']; 
+
+       if($this->items[$id]['qty'] <=0){ //Evita que el item se quede alli, diciendo que no tiene nada
+          unset($this->items[$id]);
+       }
+    }
+
+    public function removeItem($id){
+        $this->totalQty -= $this->items[$id]['qty']; //Quita la cantidad por 1
+        $this->totalPrice -= $this->items[$id]['price']; 
+        unset($this->items[$id]);
     }
 }

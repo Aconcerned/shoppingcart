@@ -23,6 +23,18 @@ Route::get('/shopping-cart/{id}', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/reduce{id}', [
+    'uses' => 'ProductController@getReducedByOne',
+    'as'=> 'product.reduceByOne',
+    'middleware' => 'auth'
+]);
+
+Route::get('/remove{id}', [
+    'uses' => 'ProductController@getRemoveItem',
+    'as'=> 'product.remove',
+    'middleware' => 'auth'
+]);
+
 //Invoca al controlador ProductController para que meta cosas en el carrito
 Route::get('/shopping-cart/', [
     'uses' => 'ProductController@getCart',
@@ -68,18 +80,25 @@ Route::group(['prefix' => 'user'], function() {
 });
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/profile', [
-        'uses' => 'UserController@getProfile',
-        'as' => 'user.profile' //Es el modulo de perfil, solo usuarios registrados lo pueden ver
-    ]);
     
     Route::get('/logout', [
         'uses' => 'UserController@getLogout',
         'as' => 'user.logout'  //Es el modulo de salir, solo usuarios registrados lo pueden usar
     ]);
+
 });
 });
 
 Route::get('/admin', 'AdminController@admin')    
     ->middleware('is_admin')    
     ->name('admin.dashboard');
+
+    Route::get('/admin/insertproduct', 'AdminController@insertproduct')    
+    ->middleware('is_admin')    
+    ->name('admin.insertproduct');
+
+    Route::get('/profile/{id}', [
+        'uses' => 'UserController@getProfile',
+        'as' => 'user.profile',
+        'middleware' => 'auth' //Es el modulo de perfil, solo usuarios registrados lo pueden ver
+    ]);
