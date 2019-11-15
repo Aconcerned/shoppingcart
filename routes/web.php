@@ -49,7 +49,7 @@ Route::get('/checkout', [
 ]);
 
 Route::post('/checkout', [
-    'uses' => 'ProductController@postCheckout',
+    'uses' => 'ProductController@postStorage',
     'as'=> 'checkout',
     'middleware' => 'auth'
 ]);

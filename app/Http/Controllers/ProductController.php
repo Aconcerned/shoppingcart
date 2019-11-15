@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Product;
-
+use App\Checkout;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -67,6 +67,26 @@ class ProductController extends Controller
         $cart = new Cart($oldCart);
         $total = $cart->totalPrice;
         return view('shop.checkout', ['total' => $total]);
+    }
+
+    public function postStorage(Request $request){ //Crear la compra
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $total = $cart->totalPrice;
+
+        $checkout=new Checkout([
+            'name' => $request->input('name'),
+            'address' => $request->input('address'),
+            'card-name' => $request->input('card-name'),
+            'card-number' => $request->input('card-number'),
+            'card-expiry-month' => $request->input('card-expiry-month'),
+            'card-expiry-year' => $request->input('card-expiry-year'),
+            'card-cvc' => $request->input('card-cvc'),
+            'total' => $cart->totalPrice,
+        ]);
+
+        $checkout->save(); //Salva al usuario
+        return redirect()->route('product.index');
     }
 
 
