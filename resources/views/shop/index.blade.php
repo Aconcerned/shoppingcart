@@ -7,7 +7,7 @@
 @section('content')
 <br></br>
 
-  @foreach($products->chunk(4) as $productChunk)
+  @foreach($products->chunk(10) as $productChunk)
   <div class="row d-flex"> <!--  Esta es la tabla de los productos en si-->
     @foreach($productChunk as $product)
     <div class="col-sm-3 col-md-4 columna">

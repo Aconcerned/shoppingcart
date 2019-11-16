@@ -86,6 +86,7 @@ class ProductController extends Controller
         ]);
 
         $checkout->save(); //Salva al usuario
+        Session::forget('cart');
         return redirect()->route('product.index');
     }
 
