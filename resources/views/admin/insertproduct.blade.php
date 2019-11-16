@@ -34,28 +34,28 @@
 
 
 
-<form  id="f_nuevo_producto"  method="post"  action="agregar_nuevo_producto" class="form-horizontal form_entrada" >                         
-
+<form method="post" action="{{ route('admin.insertproduct') }}" class="form-horizontal form_entrada" >                         
+@csrf
 
 <div class="box-body col-xs-12">
 <div class="form-group col-xs-6">
                       <label for="nombre">Titulo</label>
-                      <input type="text" class="form-control" id="titulos" name="titulos" placeholder="titulos" >
+                      <input type="text" class="form-control" id="title" name="title" placeholder="titulos" >
 </div>
 
 <div class="form-group col-xs-12">
                       <label for="apellido">URL de la imagen</label>
-                      <input type="text" class="form-control" id="urls" name="urls" placeholder="urls" >
+                      <input type="text" class="form-control" id="imagePath" name="imagePath" placeholder="urls" >
 </div>
 
 <div class="form-group col-xs-12">
                       <label for="ciudad">Descripcion</label>
-                      <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion" >
+                      <input type="text" class="form-control" id="description" name="description" placeholder="descripcion" >
 </div>
 
 <div class="form-group col-xs-3">
                       <label for="institucion">Precio</label>
-                      <input type="number" class="form-control" id="precio" name="precio" placeholder="precio" >
+                      <input type="number" class="form-control" id="price" name="price" placeholder="precio" >
 </div>
 
 <div class="form-group col-xs-12">

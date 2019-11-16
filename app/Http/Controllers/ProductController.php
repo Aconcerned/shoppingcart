@@ -66,15 +66,15 @@ class ProductController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
         $total = $cart->totalPrice;
-        return view('shop.checkout', ['total' => $total]);
+        return view('shop.checkout', ['total' => $total]); //Muestra el total
     }
 
     public function postStorage(Request $request){ //Crear la compra
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        $total = $cart->totalPrice;
+        $total = $cart->totalPrice; //Agarra los datos del carrito, especificamente el precio
 
-        $checkout=new Checkout([
+        $checkout=new Checkout([ //Crea la fila 
             'name' => $request->input('name'),
             'address' => $request->input('address'),
             'card-name' => $request->input('card-name'),
@@ -87,6 +87,20 @@ class ProductController extends Controller
 
         $checkout->save(); //Salva al usuario
         return redirect()->route('product.index');
+    }
+
+    public function postProduct(Request $request){ //Crear la compra
+
+        $product=new Product([ //Crea la fila 
+            'imagePath' => $request->input('imagePath'),
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'type' => $request->input('type'),
+        ]);
+
+        $product->save(); //Salva al usuario
+        return redirect()->route('admin.dashboard');
     }
 
 

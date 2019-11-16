@@ -97,6 +97,10 @@ Route::get('/admin', 'AdminController@admin')
     ->middleware('is_admin')    
     ->name('admin.insertproduct');
 
+    Route::post('/admin/insertproduct', 'ProductController@postProduct')    
+    ->middleware('is_admin')    
+    ->name('admin.insertproduct');
+
     Route::get('/profile/{id}', [
         'uses' => 'UserController@getProfile',
         'as' => 'user.profile',
