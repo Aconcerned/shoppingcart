@@ -24,6 +24,64 @@
     <!-- bootstrap wysihtml5 - text editor -->
      <link href="{{ asset('public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}" rel="stylesheet" type="text/css" >
 
+<body class="hold-transition skin-blue sidebar-mini">
+     <header class="main-header">
+        <!-- Logo -->
+        <a href="{{ route('admin.dashboard') }}" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini"><b>A</b>LT</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg"><b>Plu</b>SIS</span>
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="hidden-xs">Usuario</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    
+                    <p>
+
+                    </p>
+                  </li>
+                  <!-- Menu Body -->
+                  <li class="user-body">
+                    <div class="col-xs-4 text-center">
+                      <!--<a href="#">Followers</a>-->
+                    </div>
+                    <div class="col-xs-4 text-center">
+                     <!-- <a href="#">Sales</a>-->
+                    </div>
+                    <div class="col-xs-4 text-center">
+                     <!-- <a href="#">Friends</a>-->
+                    </div>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="{{ route('user.profile', auth()->user()->id) }}" class="btn btn-default btn-flat">Perfil</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="{{ route('user.logout') }}" class="btn btn-default btn-flat">Salir</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+              <li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
 <div class="box box-primary col-xs-12">
                 
                 <div class="box-header">
@@ -32,7 +90,13 @@
 
 <div id="notificacion_resul_fanu"></div>
 
-
+<script>
+  var msg = '{{Session::get('alert')}}';
+  var exist = '{{Session::has('alert')}}';
+  if(exist){
+    alert(msg);
+  }
+</script>
 
 <form method="post" action="{{ route('admin.insertproduct') }}" class="form-horizontal form_entrada" >                         
 @csrf
@@ -76,3 +140,4 @@
 </form>
 
 </div>
+</body>

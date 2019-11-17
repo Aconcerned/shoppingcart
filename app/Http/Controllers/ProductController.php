@@ -87,10 +87,10 @@ class ProductController extends Controller
 
         $checkout->save(); //Salva al usuario
         Session::forget('cart');
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('alert', 'Se hizo la compra');
     }
 
-    public function postProduct(Request $request){ //Crear la compra
+    public function postProduct(Request $request){ //Crear el producto
 
         $product=new Product([ //Crea la fila 
             'imagePath' => $request->input('imagePath'),
@@ -101,7 +101,7 @@ class ProductController extends Controller
         ]);
 
         $product->save(); //Salva al usuario
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('admin.insertproduct')->with('alert', 'Se creó el producto');
     }
 
 

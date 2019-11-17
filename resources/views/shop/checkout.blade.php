@@ -35,17 +35,17 @@
 
 <div class="form-group col-xs-3">
                       <label for="institucion">Mes que expira</label>
-                      <input type="number" class="form-control" id="card-expiry-month" name="card-expiry-month" placeholder="mes" >
+                      <input type="number" class="form-control" min="1" max="12" id="card-expiry-month" name="card-expiry-month" placeholder="mes" >
 </div>
 
 <div class="form-group col-xs-3">
                       <label for="institucion">Año que expira</label>
-                      <input type="number" class="form-control" id="card-expiry-year" name="card-expiry-year" placeholder="año" >
+                      <input type="number" class="form-control" id="card-expiry-year" min="2019" max="2025" name="card-expiry-year" placeholder="año" >
 </div>
 
 <div class="form-group col-xs-3">
                       <label for="institucion">CVC</label>
-                      <input type="number" class="form-control" id="card-cvc" name="card-cvc" placeholder="cvc" >
+                      <input type="number" class="form-control" id="card-cvc" min="1" name="card-cvc" placeholder="cvc" >
 </div>
 
 <div class="form-group col-xs-3">
