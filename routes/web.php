@@ -101,6 +101,14 @@ Route::get('/admin', 'AdminController@admin')
     ->middleware('is_admin')    
     ->name('admin.insertproduct');
 
+    Route::get('/admin/usertable', 'AdminController@listuser')    
+    ->middleware('is_admin')    
+    ->name('admin.usertable');
+
+    Route::get('/admin/usertable', 'AdminController@listuser2')    
+    ->middleware('is_admin')    
+    ->name('admin.usertable');
+
     Route::get('/profile/{id}', [
         'uses' => 'UserController@getProfile',
         'as' => 'user.profile',

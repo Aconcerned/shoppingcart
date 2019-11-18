@@ -9,6 +9,7 @@ use Auth;
 use Redirect;
 use Illuminate\Support\Facades\DB;
 use Session;
+use Datatables;
 
 class UserController extends Controller
 {
@@ -55,9 +56,14 @@ class UserController extends Controller
         return redirect()->back();
         }
 
-        public function getProfile($id){
+        public function getProfile($id){ //Obtiene al usuario
             $users = User::whereId($id)->first(); 
             return view('user.profile', compact('users', $users));
+        }
+
+        public function anyData() //Se trae los datos del usuario para hacer la datatable
+        {
+            return Datatables::of(User::query())->make(true);
         }
 
     public function getLogout(){

@@ -6,13 +6,21 @@ use App\Admin;
 
 use App\Product;
 
+use App\User;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 use Auth;
 
+use DB;
+
+use Config;
+
 use Redirect;
+
+use Yajra\Datatables\Datatables;
 
 class AdminController extends Controller
 {
@@ -27,6 +35,15 @@ class AdminController extends Controller
 
     public function insertproduct(){
         return view('admin.insertproduct');
+    }
+
+    public function listuser(){
+        return view('admin.usertable');
+    }
+
+    public function listuser2(){
+        $users = DB::table('users')->select('*');
+        return datatables()->of($users)->make(true);
     }
 
     //public function inserting(Request $request){
