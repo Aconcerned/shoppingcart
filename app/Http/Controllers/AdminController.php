@@ -48,6 +48,17 @@ class AdminController extends Controller
         }
     }
 
+    public function listproduct(){
+        return view('admin.producttable');
+    }
+
+    public function fetch_product(Request $request){
+        if($request->ajax()){
+            $data = DB::table('products')->orderBy('id')->get();
+            echo json_encode($data);
+        }
+    }
+
     //public function inserting(Request $request){
         //$this->validate($request, [
             //'imagePath' => 'required|unique:products',

@@ -109,6 +109,14 @@ Route::get('/admin', 'AdminController@admin')
     ->middleware('is_admin')    
     ->name('admin.usertable');
 
+    Route::get('/admin/producttable', 'AdminController@listproduct')    
+    ->middleware('is_admin')    
+    ->name('admin.producttable');
+
+    Route::get('/admin/producttable/fetch_product', 'AdminController@fetch_product')    
+    ->middleware('is_admin')    
+    ->name('admin.producttable');
+
     Route::get('/profile/{id}', [
         'uses' => 'UserController@getProfile',
         'as' => 'user.profile',
