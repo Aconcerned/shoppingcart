@@ -41,9 +41,11 @@ class AdminController extends Controller
         return view('admin.usertable');
     }
 
-    public function listuser2(){
-        $users = DB::table('users')->select('*');
-        return datatables()->of($users)->make(true);
+    public function fetch_data(Request $request){
+        if($request->ajax()){
+            $data = DB::table('users')->orderBy('id')->get();
+            echo json_encode($data);
+        }
     }
 
     //public function inserting(Request $request){

@@ -86,16 +86,20 @@
 
 <body>
 
-<table class="table table-bordered" id="laravel_datatable">
+<div class="panel-body">
+<table class="table table-bordered table-striped" id="laravel_datatable">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Email</th>
-                <th>Created At</th>
-                <th>Updated At</th>
+                <th>Type</th>
+                <th>Accion</th>
             </tr>
         </thead>
-    </table>
+        <tbody>
+
+        </tbody>
+</table>
+</div>
 
         <!-- jQuery -->
         <script src="//code.jquery.com/jquery.js"></script>
@@ -104,16 +108,30 @@
 
         <script>
  $(document).ready( function () {
-    $('#laravel_datatable').DataTable({
-           processing: true,
-           serverSide: true,
-           ajax: "{{ url('users-list') }}",
-           columns: [
-                    { data: 'id', name: 'id' },
-                    { data: 'email', name: 'email' },
-                    { data: 'created_at', name: 'created_at' }
-                 ]
-        });
+
+      fetch_data();
+ 
+      function fetch_data(){
+        $.ajax({
+        url:"/shoppingcart/public/admin/usertable/fetch_data",
+        dataType:"json",
+        success:function(data){
+          var html = '';
+          html += '<tr>';
+          html += '<td contenteditable id="email"></td>';
+          html += '<td contenteditable id="type"></td>';
+          html += '<td><button type="button" id ="add">Add</button></td></tr>'
+
+          for(var count=0; count < data.length; count++){
+            html += '<tr>';
+            html += '<td contenteditable class="column_name" data-column_name="email" id ="'+data[count].id+'">'+data[count].email+'</td>';
+            html += '<td contenteditable class="column_name" data-column_name="type" id ="'+data[count].id+'">'+data[count].type+'</td>';
+            html += '<td><button type="button" class="btn btn-danger" id="'+data[count].id+'">Delete</button></td></tr>'
+          }
+          $('tbody').html(html);
+        }
+      })
+      }
      });
 </script>
 

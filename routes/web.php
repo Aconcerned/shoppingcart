@@ -105,7 +105,7 @@ Route::get('/admin', 'AdminController@admin')
     ->middleware('is_admin')    
     ->name('admin.usertable');
 
-    Route::get('/admin/usertable', 'AdminController@listuser2')    
+    Route::get('/admin/usertable/fetch_data', 'AdminController@fetch_data')    
     ->middleware('is_admin')    
     ->name('admin.usertable');
 
