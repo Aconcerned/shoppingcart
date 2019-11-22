@@ -87,6 +87,9 @@
 <body>
 
 <div class="panel-body">
+<div id="message">
+
+</div>
 <table class="table table-bordered table-striped" id="laravel_datatable">
         <thead>
             <tr>
@@ -99,6 +102,9 @@
 
         </tbody>
 </table>
+
+{{ csrf_field() }}
+
 </div>
 
         <!-- jQuery -->
@@ -120,11 +126,11 @@
           html += '<tr>';
           html += '<td contenteditable id="email"></td>';
           html += '<td contenteditable id="type"></td>';
-          html += '<td><button type="button" id ="add">Add</button></td></tr>'
+          html += '<td><button type="button" class="add" id ="add">Add</button></td></tr>'
 
           for(var count=0; count < data.length; count++){
             html += '<tr>';
-            html += '<td contenteditable class="column_name" data-column_name="email" id ="'+data[count].id+'">'+data[count].email+'</td>';
+            html += '<td class="column_name" data-column_name="email" id ="'+data[count].id+'">'+data[count].email+'</td>';
             html += '<td contenteditable class="column_name" data-column_name="type" id ="'+data[count].id+'">'+data[count].type+'</td>';
             html += '<td><button type="button" class="btn btn-danger" id="'+data[count].id+'">Delete</button></td></tr>'
           }
@@ -132,6 +138,30 @@
         }
       })
       }
+
+      var _token = $('input[type="_token"]').val();
+
+      $(document).on('click', '#add', function(){
+         var type = $('#type').text();
+         if(type != ''){
+            
+            $.ajax({
+               url:"{{ route('admin.add_data') }}",
+               method:"POST",
+               data:{type:type},
+               success:function(data)
+               {
+                 $('#message').html(data);
+                 fetch_data();
+               }
+            });
+
+         }else{
+           $('#message').html("<div class='alert alert-danger'>Debes editar el campo</div>");
+         }
+
+      });
+
      });
 </script>
 

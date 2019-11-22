@@ -116,6 +116,7 @@
                 <li class="active"><a href="{{ route('admin.insertproduct') }}"><i class="fa fa-circle-o"></i> Meter productos</a></li>
                 <li class="active"><a href="{{ route('admin.usertable') }}"><i class="fa fa-circle-o"></i> Editar usuarios</a></li>
                 <li class="active"><a href="{{ route('admin.producttable') }}"><i class="fa fa-circle-o"></i> Editar productos</a></li>
+                <li class="active"><a href="{{ route('admin.lineas') }}"><i class="fa fa-circle-o"></i> Ver chart de producto</a></li>
               </ul>
             </li>
             <li class="treeview">

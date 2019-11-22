@@ -52,10 +52,54 @@ class AdminController extends Controller
         return view('admin.producttable');
     }
 
+    public function graphic(){
+        $data = DB::table('products')
+        ->select(
+         DB::raw('type as type'),
+         DB::raw('count(*) as number'))
+        ->groupBy('type')
+        ->get();
+      $array[] = ['Gender', 'Number'];
+      foreach($data as $key => $value)
+      {
+       $array[++$key] = [$value->type, $value->number];
+      }
+      return view('admin.lineas')->with('type', json_encode($array));
+    }
+
     public function fetch_product(Request $request){
         if($request->ajax()){
             $data = DB::table('products')->orderBy('id')->get();
             echo json_encode($data);
+        }
+    }
+
+    public function add_data(Request $request){
+        if($request->ajax())
+        {
+         $data = array(
+             'type' => $request->type
+         );
+         $id = DB::table('users')->insert($data);
+         if($id > 0){
+             echo '<div class="alert alert-success">Data Inserted</div>';
+         }
+
+        }
+    }
+
+    public function delete_data(Request $request){
+        if($request->ajax())
+        {
+         $data = array(
+            'email' => $request->email, 
+            'type' => $request->type,
+         );
+         $id = DB::table('users')->delete($data);
+         if($id > 0){
+             echo '<div class="alert alert-success">Data Deleted</div>';
+         }
+
         }
     }
 

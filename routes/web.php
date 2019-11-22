@@ -109,9 +109,21 @@ Route::get('/admin', 'AdminController@admin')
     ->middleware('is_admin')    
     ->name('admin.usertable');
 
+    Route::post('/admin/usertable/add_data', 'AdminController@add_data')    
+    ->middleware('is_admin')    
+    ->name('admin.add_data');
+
+    Route::post('/admin/usertable/delete_data', 'AdminController@delete_data')    
+    ->middleware('is_admin')    
+    ->name('admin.delete_data');
+
     Route::get('/admin/producttable', 'AdminController@listproduct')    
     ->middleware('is_admin')    
     ->name('admin.producttable');
+
+    Route::get('/admin/lineas', 'AdminController@graphic')    
+    ->middleware('is_admin')    
+    ->name('admin.lineas');
 
     Route::get('/admin/producttable/fetch_product', 'AdminController@fetch_product')    
     ->middleware('is_admin')    
