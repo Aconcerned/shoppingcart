@@ -1,6 +1,6 @@
 <?php  
-  $con = new mysqli('localhost','root','','practica1');
-  $sql = "SELECT pre.* FROM precios as pre, productos as pro where pre.id_productos=pro.id";
+  $con = new mysqli('localhost','root','','shopping');
+  $sql = "SELECT pre.* FROM products as pre, productos as pro where pre.id_productos=pro.id";
   $res = $con->query($sql);
   $con->close();
 ?>

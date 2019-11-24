@@ -1,4 +1,4 @@
-<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" content="{{ csrf_token() }}">
     <!-- Bootstrap 3.3.5 -->
     <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" >
     <!-- Font Awesome -->
@@ -113,6 +113,7 @@
         <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 
         <script>
+
  $(document).ready( function () {
 
       fetch_data();
@@ -132,14 +133,20 @@
             html += '<tr>';
             html += '<td class="column_name" data-column_name="email" id ="'+data[count].id+'">'+data[count].email+'</td>';
             html += '<td contenteditable class="column_name" data-column_name="type" id ="'+data[count].id+'">'+data[count].type+'</td>';
-            html += '<td><button type="button" class="btn btn-danger" id="'+data[count].id+'">Delete</button></td></tr>'
+            html += '<td><button type="button" class="btn btn-dange delete" id="'+data[count].id+'">Delete</button></td></tr>'
           }
           $('tbody').html(html);
         }
       })
       }
 
-      var _token = $('input[type="_token"]').val();
+
+    $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': token,
+        'X-Requested-With': 'XMLHttpRequest',
+    }
+});
 
       $(document).on('click', '#add', function(){
          var type = $('#type').text();
@@ -163,6 +170,34 @@
       });
 
      });
+
+     $(document).on('click', '.delete', function() {
+    var token = '{{ csrf_token() }}';
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': token,
+            'X-Requested-With': 'XMLHttpRequest',
+        }
+    });
+    var id = $(this).attr("id");
+    if(confirm("Estas seguro de esto?"))
+    {
+        $.ajax({
+            url:"{{ route('admin.deleteuser') }}",
+            method:"POST",
+            data:{
+                id:id,
+                _method: 'delete',
+                _token: token
+            },
+            success:function(data) {
+              $('#message').html(data);
+              fetch_data();
+            }
+        })
+    }
+});
+
 </script>
 
 </body>

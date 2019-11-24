@@ -113,9 +113,9 @@ Route::get('/admin', 'AdminController@admin')
     ->middleware('is_admin')    
     ->name('admin.add_data');
 
-    Route::post('/admin/usertable/delete_data', 'AdminController@delete_data')    
+    Route::delete('/admin/usertable/deleteuser', 'AdminController@deleteuser')    
     ->middleware('is_admin')    
-    ->name('admin.delete_data');
+    ->name('admin.deleteuser');
 
     Route::get('/admin/producttable', 'AdminController@listproduct')    
     ->middleware('is_admin')    

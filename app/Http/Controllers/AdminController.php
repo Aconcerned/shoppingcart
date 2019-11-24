@@ -24,24 +24,24 @@ use Yajra\Datatables\Datatables;
 
 class AdminController extends Controller
 {
-    public function __construct()
+    public function __construct() //Obtiene el middleware de Auth
     {
         $this->middleware('auth');
     }
 
     public function admin(){
-        return view('admin.dashboard');
+        return view('admin.dashboard'); //Muestra el dashboard
     }
 
     public function insertproduct(){
-        return view('admin.insertproduct');
+        return view('admin.insertproduct'); //Muestra el formulario de insertar productos
     }
 
     public function listuser(){
-        return view('admin.usertable');
+        return view('admin.usertable'); //Muestra la tabla de usuarios
     }
 
-    public function fetch_data(Request $request){
+    public function fetch_data(Request $request){ //Se trae los datos de los usuarios
         if($request->ajax()){
             $data = DB::table('users')->orderBy('id')->get();
             echo json_encode($data);
@@ -49,10 +49,10 @@ class AdminController extends Controller
     }
 
     public function listproduct(){
-        return view('admin.producttable');
+        return view('admin.producttable'); //Muestra la tabla de productos
     }
 
-    public function graphic(){
+    public function graphic(){ //Crea la Google Graphic los datos de la base de datos
         $data = DB::table('products')
         ->select(
          DB::raw('type as type'),
@@ -67,7 +67,7 @@ class AdminController extends Controller
       return view('admin.lineas')->with('type', json_encode($array));
     }
 
-    public function fetch_product(Request $request){
+    public function fetch_product(Request $request){ //Se trae los productos
         if($request->ajax()){
             $data = DB::table('products')->orderBy('id')->get();
             echo json_encode($data);
@@ -88,18 +88,11 @@ class AdminController extends Controller
         }
     }
 
-    public function delete_data(Request $request){
+    public function deleteuser(Request $request){
         if($request->ajax())
         {
-         $data = array(
-            'email' => $request->email, 
-            'type' => $request->type,
-         );
-         $id = DB::table('users')->delete($data);
-         if($id > 0){
-             echo '<div class="alert alert-success">Data Deleted</div>';
-         }
-
+            DB::table('users')->where('id', $request->id)->delete();
+            echo '<div class="alert alert-success">Data deleted</div>';
         }
     }
 
