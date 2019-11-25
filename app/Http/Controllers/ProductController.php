@@ -36,15 +36,16 @@ class ProductController extends Controller
         return redirect()->route('product.shoppingCart');
     }
 
-    public function getRemoveItem($id){
+    public function getRemoveItem($id){ //Quita un item entero
         $oldCart = Session::has('cart') ? Session::get('cart') : null;  //Determina si ya hay un carrito
         $cart = new Cart($oldCart); //Agarra los datos del carrito viejo
         $cart->removeItem($id); //Busca la funcion que esta en el Cart.php
         
         if($cart->items > 0){
             Session::put('cart', $cart); //Mantiene el carro si aun hay items 
-        }else{
+        }else if($cart->items <= 0){
             Session::forget('cart'); //Borra el carro entero
+            return redirect()->route('product.shoppingCart');
         }
         return redirect()->route('product.shoppingCart');
     }

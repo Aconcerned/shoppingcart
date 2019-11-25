@@ -120,20 +120,20 @@
  
       function fetch_data(){
         $.ajax({
-        url:"/shoppingcart/public/admin/usertable/fetch_data",
+        url:"/shoppingcart/public/admin/usertable/fetch_data", //Obtiene los datos 
         dataType:"json",
         success:function(data){
           var html = '';
           html += '<tr>';
           html += '<td contenteditable id="email"></td>';
           html += '<td contenteditable id="type"></td>';
-          html += '<td><button type="button" class="add" id ="add">Add</button></td></tr>'
+          
 
-          for(var count=0; count < data.length; count++){
+          for(var count=0; count < data.length; count++){ //Dependiendo de cuantos datos tenga la base de datos, muestra esa cantidad de datos
             html += '<tr>';
             html += '<td class="column_name" data-column_name="email" id ="'+data[count].id+'">'+data[count].email+'</td>';
             html += '<td contenteditable class="column_name" data-column_name="type" id ="'+data[count].id+'">'+data[count].type+'</td>';
-            html += '<td><button type="button" class="btn btn-dange delete" id="'+data[count].id+'">Delete</button></td></tr>'
+            html += '<td><button type="button" class="btn btn-danger delete" id="'+data[count].id+'">Delete</button></td></tr>'
           }
           $('tbody').html(html);
         }
@@ -141,7 +141,7 @@
       }
 
 
-    $.ajaxSetup({
+    $.ajaxSetup({//Hace el setup para borrar los datos
     headers: {
         'X-CSRF-TOKEN': token,
         'X-Requested-With': 'XMLHttpRequest',
@@ -171,26 +171,26 @@
 
      });
 
-     $(document).on('click', '.delete', function() {
+     $(document).on('click', '.delete', function() { //Detecta si se presiono DELETE
     var token = '{{ csrf_token() }}';
-    $.ajaxSetup({
-        headers: {
+    $.ajaxSetup({ 
+        headers: { //Inicia el token
             'X-CSRF-TOKEN': token,
             'X-Requested-With': 'XMLHttpRequest',
         }
     });
     var id = $(this).attr("id");
-    if(confirm("Estas seguro de esto?"))
+    if(confirm("Estas seguro de esto?")) //Determina si el usuario lo presiono por error
     {
         $.ajax({
-            url:"{{ route('admin.deleteuser') }}",
+            url:"{{ route('admin.deleteuser') }}", //Borra al usuario
             method:"POST",
             data:{
                 id:id,
                 _method: 'delete',
                 _token: token
             },
-            success:function(data) {
+            success:function(data) { //Reinicia la vista 
               $('#message').html(data);
               fetch_data();
             }

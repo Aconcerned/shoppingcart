@@ -15,8 +15,8 @@
   integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
 @section('content')
-<br></br>
-  @if(Session::has('cart'))
+<br></br> 
+  @if(Session::has('cart')) <!--  Detecta si hay un carrito -->
    <div class="row">
       <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
        <ul class="list-group">
@@ -29,7 +29,7 @@
   <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Action
   </button>
-  <div class="dropdown-menu">
+  <div class="dropdown-menu"> <!--  Muestra las opciones, como reducir o quitar productos -->
     <a class="dropdown-item" href="{{ route('product.reduceByOne', ['id' => $product['item']['id']]) }}">Quitar uno</a>
     <a class="dropdown-item" href="{{ route('product.remove', ['id' => $product['item']['id']]) }}">Quitar todos</a>
 </div>

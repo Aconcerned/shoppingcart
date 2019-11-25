@@ -9,13 +9,13 @@
   </style>
 
   <script type="text/javascript">
-   var analytics = <?php echo $type; ?>
+   var analytics = <?php echo $type; ?> //Se comunica con la grafica de google para crearla 
 
    google.charts.load('current', {'packages':['corechart']});
 
    google.charts.setOnLoadCallback(drawChart);
 
-   function drawChart()
+   function drawChart() //Dibuja la tabla en si usandolos datos del controlador
    {
     var data = google.visualization.arrayToDataTable(analytics);
     var options = {

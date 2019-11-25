@@ -84,7 +84,7 @@
         </nav>
       </header>
 
-<body>
+
 
 <div class="panel-body">
 <table class="table table-bordered table-striped" id="laravel_datatable">
@@ -103,7 +103,7 @@
         </tbody>
 </table>
 </div>
-
+</body>
         <!-- jQuery -->
         <script src="//code.jquery.com/jquery.js"></script>
         <!-- DataTables -->
@@ -112,9 +112,9 @@
         <script>
  $(document).ready( function () {
 
-      fetch_product();
+      fetch_product(); //Apenas carga la pagina, corre la funcion de abajo 
  
-      function fetch_product(){
+      function fetch_product(){ //Se trae los productos 
         $.ajax({
         url:"/shoppingcart/public/admin/producttable/fetch_product",
         dataType:"json",
@@ -126,21 +126,49 @@
           html += '<td contenteditable id="description"></td>';
           html += '<td contenteditable id="price"></td>';
           html += '<td contenteditable id="type"></td>';
-          html += '<td><button type="button" id ="add">Add</button></td></tr>'
 
-          for(var count=0; count < data.length; count++){
+          for(var count=0; count < data.length; count++){ //Por cada producto, muestra sus datos en si
             html += '<tr>';
             html += '<td contenteditable class="column_name" data-column_name="imagePath" id ="'+data[count].id+'">'+data[count].imagePath+'</td>';
             html += '<td contenteditable class="column_name" data-column_name="title" id ="'+data[count].id+'">'+data[count].title+'</td>';
             html += '<td contenteditable class="column_name" data-column_name="description" id ="'+data[count].id+'">'+data[count].description+'</td>';
             html += '<td contenteditable class="column_name" data-column_name="price" id ="'+data[count].id+'">'+data[count].price+'</td>';
             html += '<td contenteditable class="column_name" data-column_name="type" id ="'+data[count].id+'">'+data[count].type+'</td>';
-            html += '<td><button type="button" class="btn btn-danger" id="'+data[count].id+'">Delete</button></td></tr>'
+            html += '<td><button type="button" class="btn btn-danger delete" id="'+data[count].id+'">Delete</button></td></tr>'
           }
           $('tbody').html(html);
         }
       })
       }
+
+
+    $(document).on('click', '.delete', function() { //Detecta si se presiono DELETE
+    var token = '{{ csrf_token() }}';
+    $.ajaxSetup({ 
+        headers: { //Inicia el token
+            'X-CSRF-TOKEN': token,
+            'X-Requested-With': 'XMLHttpRequest',
+        }
+    });
+    var id = $(this).attr("id");
+    if(confirm("Estas seguro de esto?")) //Determina si el usuario lo presiono por error
+    {
+        $.ajax({
+            url:"{{ route('admin.deleteproduct') }}", //Borra al producto
+            method:"POST",
+            data:{
+                id:id,
+                _method: 'delete',
+                _token: token
+            },
+            success:function(data) { //Reinicia la vista 
+              $('#message').html(data);
+              fetch_product();
+            }
+        })
+    }
+});
+
      });
 </script>
 

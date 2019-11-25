@@ -13,7 +13,7 @@ class DatatablesController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function getIndex()
+    public function getIndex() //Muestra la tabla de los usuarios
     {
         return view('admin.usertable');
     }

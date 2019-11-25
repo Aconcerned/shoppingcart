@@ -88,10 +88,18 @@ class AdminController extends Controller
         }
     }
 
-    public function deleteuser(Request $request){
+    public function deleteuser(Request $request){ //Borra al usuario haciendo el comando delete
         if($request->ajax())
         {
             DB::table('users')->where('id', $request->id)->delete();
+            echo '<div class="alert alert-success">Data deleted</div>';
+        }
+    }
+
+    public function deleteproduct(Request $request){ //Borra al producto haciendo el comando delete
+        if($request->ajax())
+        {
+            DB::table('products')->where('id', $request->id)->delete();
             echo '<div class="alert alert-success">Data deleted</div>';
         }
     }
