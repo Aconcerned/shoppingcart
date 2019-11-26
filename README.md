@@ -4,7 +4,7 @@
 
 ## Shopping Cart con panel de admin
 
-Es una página web creada en Laravel, creada por los estudiantes de la Universidad Nueva Esparta, en la materia complementaria, realizada por **JAVIER VILLARROEL**, **JEAN ESBER**, **JESUS GONZALES**. Funciona como un carrito de compras y posee dos tipos de usuarios, administradores y clientes.
+Es una página web creada en Laravel, creada por los estudiantes de la Universidad Nueva Esparta, en la materia complementaria, realizada por **JAVIER VILLARROEL**, **JEAN ESBER**, **JESUS GONZALEZ**. Funciona como un carrito de compras y posee dos tipos de usuarios, administradores y clientes.
 
 *Clientes*
 Los clientes tienen acceso a la vista principal de menú, en donde pueden ver y seleccionar los productos para añadirlos al carrito. Luego, dentro del carrito, el cliente puede puede agragar o disminuir la cantidad de articulos que desean comprar, ademas de poder tener la opcion de eliminarlo si es deseado.
